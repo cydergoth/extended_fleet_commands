@@ -1,0 +1,58 @@
+#=======================================================|
+#   Extended Fleet Commands - Language File - Italian   |
+#=======================================================|
+#                   Instructions                        |
+#                                                       |
+# - Same format as the game's Language/*_main.txt files |
+# - Don't erase the numbers in front or the bar         |
+#   character at the end                                |
+# - <par1>, <par2> are replaced with values             |
+# - Save as UTF-8, named like the game's own file       |
+#   (german_main.txt, chinese_main.txt, ...)            |
+# - Missing entries fall back to English                |
+# - Drafted with AI; corrections by native speakers     |
+#   are welcome                                         |
+#=======================================================|
+[0] Orders section of the fleet ship behaviour panel    |
+#=======================================================|
+000 Ordini|
+001 Rimorchia|
+002 Carica|
+003 Carica il più vicino|
+004 Difendi|
+005 Annulla|
+006 Bersaglio: <par1>|
+007 Nessun bersaglio. Seleziona prima qualcosa nello spazio.|
+008 Ordine attuale: <par1>|
+009 Nessun ordine esteso.|
+010 rimorchio di <par1>|
+011 carico di <par1>|
+012 difesa di <par1>|
+013 La nave deve essere nello spazio di questo settore per ricevere ordini.|
+#=======================================================|
+[1] Side log messages, <par1> = fleet ship name         |
+#=======================================================|
+014 <par1>: rimorchio <par2>.|
+015 <par1>: non posso rimorchiare nulla senza un raggio traente.|
+016 <par1>: carico <par2>.|
+017 <par1>: non vedo niente da caricare qui vicino.|
+018 <par1>: difendo <par2>.|
+019 <par1>: ordini annullati, torno in formazione.|
+020 <par1>: raggio traente agganciato a <par2>.|
+021 <par1>: rimorchio di <par2> terminato, non è più nello spazio.|
+022 <par1>: <par2> caricato.|
+023 <par1>: caricato in parte <par2>, la mia stiva è piena.|
+024 <par1>: nessuno spazio in stiva per <par2>.|
+025 <par1>: <par2> è troppo grande da caricare. Rimorchialo invece.|
+026 <par1>: <par2> è sparito, ordine di carico terminato.|
+027 <par1>: <par2> è sparito, ordine di difesa terminato.|
+028 <par1>: <par2> ora è ostile, ordine di difesa terminato.|
+#=======================================================|
+[2] Escort order                                        |
+#=======================================================|
+029 Scorta|
+030 scorta di <par1>|
+031 <par1>: scorto <par2>.|
+032 <par1>: <par2> è sparito, ordine di scorta terminato.|
+033 <par1>: <par2> ora è ostile, ordine di scorta terminato.|
+034 <par1>: la mia stiva è piena, continuo a scortare <par2> senza raccogliere.|

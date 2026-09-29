@@ -1,0 +1,58 @@
+#=======================================================|
+#   Extended Fleet Commands - Language File - German    |
+#=======================================================|
+#                   Instructions                        |
+#                                                       |
+# - Same format as the game's Language/*_main.txt files |
+# - Don't erase the numbers in front or the bar         |
+#   character at the end                                |
+# - <par1>, <par2> are replaced with values             |
+# - Save as UTF-8, named like the game's own file       |
+#   (german_main.txt, chinese_main.txt, ...)            |
+# - Missing entries fall back to English                |
+# - Drafted with AI; corrections by native speakers     |
+#   are welcome                                         |
+#=======================================================|
+[0] Orders section of the fleet ship behaviour panel    |
+#=======================================================|
+000 Befehle|
+001 Schleppen|
+002 Laden|
+003 Nächstes laden|
+004 Verteidigen|
+005 Abbrechen|
+006 Ziel: <par1>|
+007 Kein Ziel. Erfasse zuerst etwas im All.|
+008 Aktueller Befehl: <par1>|
+009 Kein erweiterter Befehl.|
+010 schleppt <par1>|
+011 lädt <par1>|
+012 verteidigt <par1>|
+013 Das Schiff muss in diesem Sektor im All sein, um Befehle anzunehmen.|
+#=======================================================|
+[1] Side log messages, <par1> = fleet ship name         |
+#=======================================================|
+014 <par1>: Schleppe <par2>.|
+015 <par1>: Ohne Traktorstrahl kann ich nichts schleppen.|
+016 <par1>: Lade <par2>.|
+017 <par1>: Ich sehe hier nichts, was ich laden könnte.|
+018 <par1>: Verteidige <par2>.|
+019 <par1>: Befehle aufgehoben, kehre in die Formation zurück.|
+020 <par1>: Traktorstrahl auf <par2> fixiert.|
+021 <par1>: Schleppen von <par2> beendet, es ist nicht mehr im All.|
+022 <par1>: <par2> geladen.|
+023 <par1>: <par2> teilweise geladen, mein Frachtraum ist voll.|
+024 <par1>: Kein Frachtraum mehr frei für <par2>.|
+025 <par1>: <par2> ist zu groß zum Laden. Schlepp es stattdessen.|
+026 <par1>: <par2> ist verschwunden, Ladebefehl beendet.|
+027 <par1>: <par2> ist verschwunden, Verteidigungsbefehl beendet.|
+028 <par1>: <par2> ist jetzt feindlich, Verteidigungsbefehl beendet.|
+#=======================================================|
+[2] Escort order                                        |
+#=======================================================|
+029 Eskortieren|
+030 eskortiert <par1>|
+031 <par1>: Eskortiere <par2>.|
+032 <par1>: <par2> ist verschwunden, Eskortbefehl beendet.|
+033 <par1>: <par2> ist jetzt feindlich, Eskortbefehl beendet.|
+034 <par1>: Mein Frachtraum ist voll, ich eskortiere <par2> weiter, ohne zu sammeln.|

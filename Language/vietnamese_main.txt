@@ -1,0 +1,58 @@
+#=======================================================|
+#   Extended Fleet Commands - Language File - Vietnamese|
+#=======================================================|
+#                   Instructions                        |
+#                                                       |
+# - Same format as the game's Language/*_main.txt files |
+# - Don't erase the numbers in front or the bar         |
+#   character at the end                                |
+# - <par1>, <par2> are replaced with values             |
+# - Save as UTF-8, named like the game's own file       |
+#   (german_main.txt, chinese_main.txt, ...)            |
+# - Missing entries fall back to English                |
+# - Drafted with AI; corrections by native speakers     |
+#   are welcome                                         |
+#=======================================================|
+[0] Orders section of the fleet ship behaviour panel    |
+#=======================================================|
+000 Mệnh lệnh|
+001 Kéo|
+002 Chất hàng|
+003 Chất gần nhất|
+004 Bảo vệ|
+005 Hủy|
+006 Mục tiêu: <par1>|
+007 Không có mục tiêu. Hãy chọn một vật thể trong không gian trước.|
+008 Lệnh hiện tại: <par1>|
+009 Không có lệnh mở rộng.|
+010 đang kéo <par1>|
+011 đang chất <par1>|
+012 đang bảo vệ <par1>|
+013 Tàu phải ở trong không gian của khu vực này để nhận lệnh.|
+#=======================================================|
+[1] Side log messages, <par1> = fleet ship name         |
+#=======================================================|
+014 <par1>: đang kéo <par2>.|
+015 <par1>: tôi không thể kéo gì nếu không có tia kéo.|
+016 <par1>: đang chất <par2>.|
+017 <par1>: tôi không thấy gì có thể chất ở gần đây.|
+018 <par1>: đang bảo vệ <par2>.|
+019 <par1>: đã hủy lệnh, trở về đội hình.|
+020 <par1>: tia kéo đã khóa vào <par2>.|
+021 <par1>: đã ngừng kéo <par2>, nó không còn trong không gian.|
+022 <par1>: đã chất <par2>.|
+023 <par1>: đã chất một phần <par2>, khoang hàng đã đầy.|
+024 <par1>: không còn chỗ trong khoang hàng cho <par2>.|
+025 <par1>: <par2> quá lớn để chất. Hãy kéo nó.|
+026 <par1>: <par2> đã biến mất, lệnh chất hàng kết thúc.|
+027 <par1>: <par2> đã biến mất, lệnh bảo vệ kết thúc.|
+028 <par1>: <par2> giờ đã thù địch, lệnh bảo vệ kết thúc.|
+#=======================================================|
+[2] Escort order                                        |
+#=======================================================|
+029 Hộ tống|
+030 đang hộ tống <par1>|
+031 <par1>: đang hộ tống <par2>.|
+032 <par1>: <par2> đã biến mất, lệnh hộ tống kết thúc.|
+033 <par1>: <par2> giờ đã thù địch, lệnh hộ tống kết thúc.|
+034 <par1>: khoang hàng đã đầy, tôi sẽ tiếp tục hộ tống <par2> mà không thu nhặt.|

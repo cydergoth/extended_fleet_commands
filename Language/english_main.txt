@@ -1,0 +1,56 @@
+#=======================================================|
+#   Extended Fleet Commands - Language File - English   |
+#=======================================================|
+#                   Instructions                        |
+#                                                       |
+# - Same format as the game's Language/*_main.txt files |
+# - Don't erase the numbers in front or the bar         |
+#   character at the end                                |
+# - <par1>, <par2> are replaced with values             |
+# - Save as UTF-8, named like the game's own file       |
+#   (german_main.txt, chinese_main.txt, ...)            |
+# - Missing entries fall back to English                |
+#=======================================================|
+[0] Orders section of the fleet ship behaviour panel    |
+#=======================================================|
+000 Orders|
+001 Tow|
+002 Load|
+003 Load nearest|
+004 Defend|
+005 Cancel|
+006 Target: <par1>|
+007 No target. Target something in space first.|
+008 Current order: <par1>|
+009 No extended order.|
+010 towing <par1>|
+011 loading <par1>|
+012 defending <par1>|
+013 The ship must be in space in this sector to take orders.|
+#=======================================================|
+[1] Side log messages, <par1> = fleet ship name         |
+#=======================================================|
+014 <par1>: towing <par2>.|
+015 <par1>: I can't tow without a tractor beam.|
+016 <par1>: loading <par2>.|
+017 <par1>: I don't see anything I can load nearby.|
+018 <par1>: defending <par2>.|
+019 <par1>: orders cancelled, returning to formation.|
+020 <par1>: tractor beam locked on <par2>.|
+021 <par1>: stopped towing <par2>, it's no longer in space.|
+022 <par1>: loaded <par2>.|
+023 <par1>: loaded part of <par2>, my cargo hold is full.|
+024 <par1>: no cargo space left for <par2>.|
+025 <par1>: <par2> is too large to load. Tow it instead.|
+026 <par1>: <par2> is gone, load order ended.|
+027 <par1>: <par2> is gone, defend order ended.|
+028 <par1>: <par2> is hostile now, defend order ended.|
+#=======================================================|
+[2] Escort order                                        |
+#=======================================================|
+029 Escort|
+030 escorting <par1>|
+031 <par1>: escorting <par2>.|
+032 <par1>: <par2> is gone, escort order ended.|
+033 <par1>: <par2> is hostile now, escort order ended.|
+034 <par1>: my cargo hold is full, I'll keep escorting <par2> without collecting.|

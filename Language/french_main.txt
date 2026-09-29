@@ -1,0 +1,58 @@
+#=======================================================|
+#   Extended Fleet Commands - Language File - French    |
+#=======================================================|
+#                   Instructions                        |
+#                                                       |
+# - Same format as the game's Language/*_main.txt files |
+# - Don't erase the numbers in front or the bar         |
+#   character at the end                                |
+# - <par1>, <par2> are replaced with values             |
+# - Save as UTF-8, named like the game's own file       |
+#   (german_main.txt, chinese_main.txt, ...)            |
+# - Missing entries fall back to English                |
+# - Drafted with AI; corrections by native speakers     |
+#   are welcome                                         |
+#=======================================================|
+[0] Orders section of the fleet ship behaviour panel    |
+#=======================================================|
+000 Ordres|
+001 Remorquer|
+002 Charger|
+003 Charger le plus proche|
+004 Défendre|
+005 Annuler|
+006 Cible : <par1>|
+007 Aucune cible. Ciblez d'abord quelque chose dans l'espace.|
+008 Ordre actuel : <par1>|
+009 Aucun ordre étendu.|
+010 remorque <par1>|
+011 charge <par1>|
+012 défend <par1>|
+013 Le vaisseau doit être dans l'espace de ce secteur pour recevoir des ordres.|
+#=======================================================|
+[1] Side log messages, <par1> = fleet ship name         |
+#=======================================================|
+014 <par1> : je remorque <par2>.|
+015 <par1> : je ne peux rien remorquer sans rayon tracteur.|
+016 <par1> : chargement de <par2>.|
+017 <par1> : je ne vois rien à charger à proximité.|
+018 <par1> : je défends <par2>.|
+019 <par1> : ordres annulés, retour en formation.|
+020 <par1> : rayon tracteur verrouillé sur <par2>.|
+021 <par1> : remorquage de <par2> terminé, il n'est plus dans l'espace.|
+022 <par1> : <par2> chargé.|
+023 <par1> : <par2> chargé en partie, ma soute est pleine.|
+024 <par1> : plus de place en soute pour <par2>.|
+025 <par1> : <par2> est trop grand pour être chargé. Remorquez-le plutôt.|
+026 <par1> : <par2> a disparu, ordre de chargement terminé.|
+027 <par1> : <par2> a disparu, ordre de défense terminé.|
+028 <par1> : <par2> est désormais hostile, ordre de défense terminé.|
+#=======================================================|
+[2] Escort order                                        |
+#=======================================================|
+029 Escorter|
+030 escorte <par1>|
+031 <par1> : j'escorte <par2>.|
+032 <par1> : <par2> a disparu, ordre d'escorte terminé.|
+033 <par1> : <par2> est désormais hostile, ordre d'escorte terminé.|
+034 <par1> : ma soute est pleine, je continue d'escorter <par2> sans ramasser.|

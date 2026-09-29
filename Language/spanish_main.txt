@@ -1,0 +1,58 @@
+#=======================================================|
+#   Extended Fleet Commands - Language File - Spanish   |
+#=======================================================|
+#                   Instructions                        |
+#                                                       |
+# - Same format as the game's Language/*_main.txt files |
+# - Don't erase the numbers in front or the bar         |
+#   character at the end                                |
+# - <par1>, <par2> are replaced with values             |
+# - Save as UTF-8, named like the game's own file       |
+#   (german_main.txt, chinese_main.txt, ...)            |
+# - Missing entries fall back to English                |
+# - Drafted with AI; corrections by native speakers     |
+#   are welcome                                         |
+#=======================================================|
+[0] Orders section of the fleet ship behaviour panel    |
+#=======================================================|
+000 Órdenes|
+001 Remolcar|
+002 Cargar|
+003 Cargar el más cercano|
+004 Defender|
+005 Cancelar|
+006 Objetivo: <par1>|
+007 Sin objetivo. Fija primero un objetivo en el espacio.|
+008 Orden actual: <par1>|
+009 Sin orden extendida.|
+010 remolcando <par1>|
+011 cargando <par1>|
+012 defendiendo <par1>|
+013 La nave debe estar en el espacio de este sector para recibir órdenes.|
+#=======================================================|
+[1] Side log messages, <par1> = fleet ship name         |
+#=======================================================|
+014 <par1>: remolcando <par2>.|
+015 <par1>: no puedo remolcar nada sin un rayo tractor.|
+016 <par1>: cargando <par2>.|
+017 <par1>: no veo nada que pueda cargar cerca.|
+018 <par1>: defendiendo <par2>.|
+019 <par1>: órdenes canceladas, volviendo a la formación.|
+020 <par1>: rayo tractor fijado en <par2>.|
+021 <par1>: dejé de remolcar <par2>, ya no está en el espacio.|
+022 <par1>: <par2> cargado.|
+023 <par1>: cargué parte de <par2>, mi bodega está llena.|
+024 <par1>: no queda espacio de carga para <par2>.|
+025 <par1>: <par2> es demasiado grande para cargarlo. Remólcalo.|
+026 <par1>: <par2> ha desaparecido, orden de carga terminada.|
+027 <par1>: <par2> ha desaparecido, orden de defensa terminada.|
+028 <par1>: <par2> ahora es hostil, orden de defensa terminada.|
+#=======================================================|
+[2] Escort order                                        |
+#=======================================================|
+029 Escoltar|
+030 escoltando <par1>|
+031 <par1>: escoltando <par2>.|
+032 <par1>: <par2> ha desaparecido, orden de escolta terminada.|
+033 <par1>: <par2> ahora es hostil, orden de escolta terminada.|
+034 <par1>: mi bodega está llena, seguiré escoltando a <par2> sin recoger.|

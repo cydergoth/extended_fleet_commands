@@ -1,0 +1,58 @@
+#=======================================================|
+#   Extended Fleet Commands - Language File - Chinese   |
+#=======================================================|
+#                   Instructions                        |
+#                                                       |
+# - Same format as the game's Language/*_main.txt files |
+# - Don't erase the numbers in front or the bar         |
+#   character at the end                                |
+# - <par1>, <par2> are replaced with values             |
+# - Save as UTF-8, named like the game's own file       |
+#   (german_main.txt, chinese_main.txt, ...)            |
+# - Missing entries fall back to English                |
+# - Drafted with AI; corrections by native speakers     |
+#   are welcome                                         |
+#=======================================================|
+[0] Orders section of the fleet ship behaviour panel    |
+#=======================================================|
+000 命令|
+001 拖曳|
+002 装载|
+003 装载最近的|
+004 保护|
+005 取消|
+006 目标：<par1>|
+007 没有目标。请先在太空中选择一个目标。|
+008 当前命令：<par1>|
+009 没有扩展命令。|
+010 拖曳 <par1>|
+011 装载 <par1>|
+012 保护 <par1>|
+013 舰船必须在本星区的太空中才能接受命令。|
+#=======================================================|
+[1] Side log messages, <par1> = fleet ship name         |
+#=======================================================|
+014 <par1>：正在拖曳 <par2>。|
+015 <par1>：没有牵引光束，我无法拖曳任何东西。|
+016 <par1>：正在装载 <par2>。|
+017 <par1>：附近没有我能装载的东西。|
+018 <par1>：正在保护 <par2>。|
+019 <par1>：命令已取消，返回编队。|
+020 <par1>：牵引光束已锁定 <par2>。|
+021 <par1>：已停止拖曳 <par2>，它已不在太空中。|
+022 <par1>：已装载 <par2>。|
+023 <par1>：已装载部分 <par2>，货舱已满。|
+024 <par1>：货舱没有空间装载 <par2>。|
+025 <par1>：<par2> 太大，无法装载。请改为拖曳。|
+026 <par1>：<par2> 已消失，装载命令结束。|
+027 <par1>：<par2> 已消失，保护命令结束。|
+028 <par1>：<par2> 已变为敌对，保护命令结束。|
+#=======================================================|
+[2] Escort order                                        |
+#=======================================================|
+029 护航|
+030 护航 <par1>|
+031 <par1>：正在护航 <par2>。|
+032 <par1>：<par2> 已消失，护航命令结束。|
+033 <par1>：<par2> 已变为敌对，护航命令结束。|
+034 <par1>：货舱已满，我将继续护航 <par2>，但不再收集。|

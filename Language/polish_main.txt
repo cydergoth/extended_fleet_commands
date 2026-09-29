@@ -1,0 +1,58 @@
+#=======================================================|
+#   Extended Fleet Commands - Language File - Polish    |
+#=======================================================|
+#                   Instructions                        |
+#                                                       |
+# - Same format as the game's Language/*_main.txt files |
+# - Don't erase the numbers in front or the bar         |
+#   character at the end                                |
+# - <par1>, <par2> are replaced with values             |
+# - Save as UTF-8, named like the game's own file       |
+#   (german_main.txt, chinese_main.txt, ...)            |
+# - Missing entries fall back to English                |
+# - Drafted with AI; corrections by native speakers     |
+#   are welcome                                         |
+#=======================================================|
+[0] Orders section of the fleet ship behaviour panel    |
+#=======================================================|
+000 Rozkazy|
+001 Holuj|
+002 Załaduj|
+003 Załaduj najbliższy|
+004 Broń|
+005 Anuluj|
+006 Cel: <par1>|
+007 Brak celu. Najpierw namierz coś w przestrzeni.|
+008 Obecny rozkaz: <par1>|
+009 Brak rozszerzonego rozkazu.|
+010 holowanie: <par1>|
+011 ładowanie: <par1>|
+012 obrona: <par1>|
+013 Statek musi być w przestrzeni w tym sektorze, by przyjmować rozkazy.|
+#=======================================================|
+[1] Side log messages, <par1> = fleet ship name         |
+#=======================================================|
+014 <par1>: holuję <par2>.|
+015 <par1>: bez promienia ściągającego nie mogę niczego holować.|
+016 <par1>: ładuję <par2>.|
+017 <par1>: nie widzę w pobliżu niczego do załadowania.|
+018 <par1>: bronię <par2>.|
+019 <par1>: rozkazy anulowane, wracam do formacji.|
+020 <par1>: promień ściągający namierzył <par2>.|
+021 <par1>: koniec holowania <par2>, obiektu nie ma już w przestrzeni.|
+022 <par1>: załadowano <par2>.|
+023 <par1>: załadowano część <par2>, ładownia jest pełna.|
+024 <par1>: brak miejsca w ładowni na <par2>.|
+025 <par1>: <par2> jest za duży, by go załadować. Lepiej go holuj.|
+026 <par1>: <par2> zniknął, rozkaz ładowania zakończony.|
+027 <par1>: <par2> zniknął, rozkaz obrony zakończony.|
+028 <par1>: <par2> jest teraz wrogi, rozkaz obrony zakończony.|
+#=======================================================|
+[2] Escort order                                        |
+#=======================================================|
+029 Eskortuj|
+030 eskorta: <par1>|
+031 <par1>: eskortuję <par2>.|
+032 <par1>: <par2> zniknął, rozkaz eskorty zakończony.|
+033 <par1>: <par2> jest teraz wrogi, rozkaz eskorty zakończony.|
+034 <par1>: ładownia pełna, dalej eskortuję <par2> bez zbierania.|
