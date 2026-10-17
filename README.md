@@ -121,7 +121,7 @@ Star Valor BepInEx mods, skip to step 2.
 `BepInEx/LogOutput.log` should contain:
 
 ```
-[Info   :Extended Fleet Commands] Extended Fleet Commands 1.0.0 loaded
+[Info   :Extended Fleet Commands] Extended Fleet Commands 1.1.0 loaded
 ```
 
 If the log file doesn't exist, BepInEx isn't running. Check that the files are next to
