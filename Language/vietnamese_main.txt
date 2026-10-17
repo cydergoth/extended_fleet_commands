@@ -56,3 +56,8 @@
 032 <par1>: <par2> đã biến mất, lệnh hộ tống kết thúc.|
 033 <par1>: <par2> giờ đã thù địch, lệnh hộ tống kết thúc.|
 034 <par1>: khoang hàng đã đầy, tôi sẽ tiếp tục hộ tống <par2> mà không thu nhặt.|
+#=======================================================|
+[3] Mining gear                                         |
+#=======================================================|
+035 Chỉ dùng thiết bị khai thác khi khai thác|
+036 <par1>: tôi không có laser hay drone khai thác nên sẽ không khai thác.|

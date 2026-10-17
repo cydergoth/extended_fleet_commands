@@ -56,3 +56,8 @@
 032 <par1> : <par2> a disparu, ordre d'escorte terminé.|
 033 <par1> : <par2> est désormais hostile, ordre d'escorte terminé.|
 034 <par1> : ma soute est pleine, je continue d'escorter <par2> sans ramasser.|
+#=======================================================|
+[3] Mining gear                                         |
+#=======================================================|
+035 N'utiliser que l'équipement minier pour miner|
+036 <par1> : je n'ai ni laser minier ni drone minier, je ne minerai pas.|

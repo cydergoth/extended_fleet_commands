@@ -56,3 +56,8 @@
 032 <par1>: <par2> ha desaparecido, orden de escolta terminada.|
 033 <par1>: <par2> ahora es hostil, orden de escolta terminada.|
 034 <par1>: mi bodega está llena, seguiré escoltando a <par2> sin recoger.|
+#=======================================================|
+[3] Mining gear                                         |
+#=======================================================|
+035 Usar solo equipo de minería al minar|
+036 <par1>: no tengo láseres ni drones de minería, así que no minaré.|

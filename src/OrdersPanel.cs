@@ -8,9 +8,9 @@ using UnityEngine.UI;
 namespace ExtendedFleetCommands
 {
     /// <summary>
-    /// An "Orders" section at the bottom of a fleet ship's behaviour panel, with Tow / Load /
-    /// Defend / Escort buttons that act on the player's current target, and a Cancel button next
-    /// to the ship's current order.
+    /// An "Only use mining gear when mining" toggle at the bottom of a fleet ship's behaviour
+    /// panel, then an "Orders" section with Tow / Load / Defend / Escort buttons that act on the
+    /// player's current target, and a Cancel button next to the ship's current order.
     ///
     /// The panel's controls are all anchored to its top except the background (stretched) and the
     /// Close button (anchored to the bottom), so making the panel taller adds free space between
@@ -19,16 +19,19 @@ namespace ExtendedFleetCommands
     internal sealed class OrdersPanel : MonoBehaviour
     {
         private const string SectionName = "ExtendedFleetOrders";
-        private const float ExtraHeight = 100f;
+        private const float ExtraHeight = 126f;
         // Just below the Emergency Warp block, which ends 407 px from the panel's top.
         private const float SectionTop = -410f;
         private const float Inset = 13f;
+        // The mining toggle's row, above the Orders divider.
+        private const float OrdersTop = -26f;
         private const float ButtonHeight = 22f;
         private const float ButtonGap = 6f;
         private const float CancelWidth = 70f;
         private const float RefreshSeconds = 0.25f;
 
         private FleetBehaviorControl behavior;
+        private Toggle miningGearOnly;
         private Text header;
         private Text targetLine;
         private Text orderLine;
@@ -48,7 +51,8 @@ namespace ExtendedFleetCommands
             }
             Transform labelTemplate = behavior.transform.Find("RoleText");
             Transform buttonTemplate = behavior.transform.Find("BtnChangeLaunchKey");
-            if (labelTemplate == null || buttonTemplate == null)
+            Transform toggleTemplate = behavior.transform.Find("CollectLoot");
+            if (labelTemplate == null || buttonTemplate == null || toggleTemplate == null)
             {
                 Plugin.Log.LogError("The fleet behaviour panel has changed; can't add the Orders section.");
                 return null;
@@ -67,13 +71,14 @@ namespace ExtendedFleetCommands
             rt.sizeDelta = new Vector2(-2f * Inset, ExtraHeight - 4f);
 
             OrdersPanel panel = go.AddComponent<OrdersPanel>();
-            panel.Build(behavior, labelTemplate, buttonTemplate);
+            panel.Build(behavior, labelTemplate, buttonTemplate, toggleTemplate);
             return panel;
         }
 
-        private void Build(FleetBehaviorControl behaviorControl, Transform labelTemplate, Transform buttonTemplate)
+        private void Build(FleetBehaviorControl behaviorControl, Transform labelTemplate, Transform buttonTemplate, Transform toggleTemplate)
         {
             behavior = behaviorControl;
+            miningGearOnly = CloneToggle(toggleTemplate, "MiningGearOnly", OnMiningGearOnly);
 
             var divider = new GameObject("Divider", typeof(RectTransform));
             divider.transform.SetParent(transform, false);
@@ -81,26 +86,27 @@ namespace ExtendedFleetCommands
             dividerRT.anchorMin = new Vector2(0f, 1f);
             dividerRT.anchorMax = new Vector2(1f, 1f);
             dividerRT.pivot = new Vector2(0.5f, 1f);
+            dividerRT.anchoredPosition = new Vector2(0f, OrdersTop);
             dividerRT.sizeDelta = new Vector2(0f, 1f);
             Image line = divider.AddComponent<Image>();
             line.color = new Color(1f, 1f, 1f, 0.15f);
             line.raycastTarget = false;
 
-            header = CloneLabel(labelTemplate, "Header", -14f);
+            header = CloneLabel(labelTemplate, "Header", OrdersTop - 14f);
             header.fontStyle = FontStyle.Bold;
-            targetLine = CloneLabel(labelTemplate, "Target", -34f);
+            targetLine = CloneLabel(labelTemplate, "Target", OrdersTop - 34f);
 
             float width = (((RectTransform)transform).rect.width > 0f ? ((RectTransform)transform).rect.width : 354f);
             float buttonWidth = (width - 3f * ButtonGap) / 4f;
-            tow = CloneButton(buttonTemplate, "BtnTow", 0f, -46f, buttonWidth, OnTow);
-            load = CloneButton(buttonTemplate, "BtnLoad", buttonWidth + ButtonGap, -46f, buttonWidth, OnLoad);
-            defend = CloneButton(buttonTemplate, "BtnDefend", 2f * (buttonWidth + ButtonGap), -46f, buttonWidth, OnDefend);
-            escort = CloneButton(buttonTemplate, "BtnEscort", 3f * (buttonWidth + ButtonGap), -46f, buttonWidth, OnEscort);
+            tow = CloneButton(buttonTemplate, "BtnTow", 0f, OrdersTop - 46f, buttonWidth, OnTow);
+            load = CloneButton(buttonTemplate, "BtnLoad", buttonWidth + ButtonGap, OrdersTop - 46f, buttonWidth, OnLoad);
+            defend = CloneButton(buttonTemplate, "BtnDefend", 2f * (buttonWidth + ButtonGap), OrdersTop - 46f, buttonWidth, OnDefend);
+            escort = CloneButton(buttonTemplate, "BtnEscort", 3f * (buttonWidth + ButtonGap), OrdersTop - 46f, buttonWidth, OnEscort);
 
             // The current order, with Cancel at the end of the same line.
-            orderLine = CloneLabel(labelTemplate, "Order", -84f);
+            orderLine = CloneLabel(labelTemplate, "Order", OrdersTop - 84f);
             orderLine.rectTransform.sizeDelta = new Vector2(-(CancelWidth + ButtonGap), 16f);
-            cancel = CloneButton(buttonTemplate, "BtnCancel", width - CancelWidth, -73f, CancelWidth, OnCancel);
+            cancel = CloneButton(buttonTemplate, "BtnCancel", width - CancelWidth, OrdersTop - 73f, CancelWidth, OnCancel);
         }
 
         private Text CloneLabel(Transform template, string name, float y)
@@ -122,6 +128,30 @@ namespace ExtendedFleetCommands
             return text;
         }
 
+        private Toggle CloneToggle(Transform template, string name, UnityAction<bool> onChange)
+        {
+            GameObject go = Instantiate(template.gameObject, transform, false);
+            go.name = name;
+            RemoveLangText(go);
+            var templateRT = (RectTransform)template;
+            var rt = (RectTransform)go.transform;
+            rt.anchorMin = new Vector2(0f, 1f);
+            rt.anchorMax = new Vector2(0f, 1f);
+            rt.pivot = new Vector2(0f, 1f);
+            rt.anchoredPosition = new Vector2(0f, -2f);
+            rt.sizeDelta = templateRT.rect.size;
+            ReplaceHoverTrigger(go);
+
+            Toggle toggle = go.GetComponent<Toggle>();
+            toggle.onValueChanged = new Toggle.ToggleEvent();
+            toggle.onValueChanged.AddListener(onChange);
+
+            // The label is longer than "Collect loot".
+            Text label = go.GetComponentInChildren<Text>(true);
+            label.horizontalOverflow = HorizontalWrapMode.Overflow;
+            return toggle;
+        }
+
         private Button CloneButton(Transform template, string name, float x, float y, float width, UnityAction onClick)
         {
             GameObject go = Instantiate(template.gameObject, transform, false);
@@ -134,10 +164,31 @@ namespace ExtendedFleetCommands
             rt.anchoredPosition = new Vector2(x, y);
             rt.sizeDelta = new Vector2(width, ButtonHeight);
 
-            // The template's EventTrigger shows the launch-key hint. Replace it with one that only
-            // does what every fleet panel control does on hover: stop clicks from firing the
-            // player's weapons.
-            DestroyImmediate(go.GetComponent<EventTrigger>());
+            // The template's EventTrigger shows the launch-key hint.
+            ReplaceHoverTrigger(go);
+
+            Button button = go.GetComponent<Button>();
+            button.onClick = new Button.ButtonClickedEvent();
+            button.onClick.AddListener(onClick);
+
+            Text label = go.GetComponentInChildren<Text>(true);
+            label.resizeTextForBestFit = true;
+            label.resizeTextMinSize = 8;
+            label.resizeTextMaxSize = label.fontSize;
+            return button;
+        }
+
+        /// <summary>
+        /// Replaces a cloned control's EventTrigger with one that only does what every fleet panel
+        /// control does on hover: stop clicks from firing the player's weapons.
+        /// </summary>
+        private static void ReplaceHoverTrigger(GameObject go)
+        {
+            EventTrigger old = go.GetComponent<EventTrigger>();
+            if (old != null)
+            {
+                DestroyImmediate(old);
+            }
             EventTrigger trigger = go.AddComponent<EventTrigger>();
             AddTrigger(trigger, EventTriggerType.PointerEnter, () =>
             {
@@ -153,16 +204,6 @@ namespace ExtendedFleetCommands
                     FleetControl.instance.MouseLeave();
                 }
             });
-
-            Button button = go.GetComponent<Button>();
-            button.onClick = new Button.ButtonClickedEvent();
-            button.onClick.AddListener(onClick);
-
-            Text label = go.GetComponentInChildren<Text>(true);
-            label.resizeTextForBestFit = true;
-            label.resizeTextMinSize = 8;
-            label.resizeTextMaxSize = label.fontSize;
-            return button;
         }
 
         private static void AddTrigger(EventTrigger trigger, EventTriggerType type, UnityAction action)
@@ -195,6 +236,10 @@ namespace ExtendedFleetCommands
             nextRefresh = Time.unscaledTime + RefreshSeconds;
             AIMercenary ship = Ship();
             Transform target = CurrentTarget();
+
+            AIMercenaryCharacter character = GameAccess.BehaviorShip(behavior);
+            miningGearOnly.GetComponentInChildren<Text>(true).text = Loc.Get(Loc.MiningGearOnly);
+            miningGearOnly.SetIsOnWithoutNotify(character != null && MiningGear.IsOn(character));
 
             header.text = Loc.Get(Loc.Orders).ToUpper();
             if (ship == null)
@@ -328,6 +373,20 @@ namespace ExtendedFleetCommands
             FleetOrders.Issue(ship, OrderKind.Escort, target);
             FleetOrders.Report(ship, Loc.MsgEscort, OrderTargets.DisplayName(target));
             Refresh();
+        }
+
+        private void OnMiningGearOnly(bool on)
+        {
+            AIMercenaryCharacter character = GameAccess.BehaviorShip(behavior);
+            if (character == null)
+            {
+                return;
+            }
+            MiningGear.Set(character, on);
+            if (on)
+            {
+                MiningGear.WarnIfNoGear(Ship());
+            }
         }
 
         private void OnCancel()

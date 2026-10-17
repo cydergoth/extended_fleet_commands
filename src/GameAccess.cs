@@ -25,6 +25,10 @@ namespace ExtendedFleetCommands
         public static readonly AccessTools.FieldRef<AE_TractorBeam, float> TractorMaxDistance =
             AccessTools.FieldRefAccess<AE_TractorBeam, float>("maxDistance");
 
+        /// <summary>The ship a weapon turret belongs to, if it is an AI ship.</summary>
+        public static readonly AccessTools.FieldRef<WeaponTurret, AIControl> TurretOwner =
+            AccessTools.FieldRefAccess<WeaponTurret, AIControl>("aiControl");
+
         /// <summary>The fleet ship the behaviour panel is showing.</summary>
         public static readonly AccessTools.FieldRef<FleetBehaviorControl, AIMercenaryCharacter> BehaviorShip =
             AccessTools.FieldRefAccess<FleetBehaviorControl, AIMercenaryCharacter>("aiMercChar");

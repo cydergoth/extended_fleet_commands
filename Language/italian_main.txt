@@ -56,3 +56,8 @@
 032 <par1>: <par2> è sparito, ordine di scorta terminato.|
 033 <par1>: <par2> ora è ostile, ordine di scorta terminato.|
 034 <par1>: la mia stiva è piena, continuo a scortare <par2> senza raccogliere.|
+#=======================================================|
+[3] Mining gear                                         |
+#=======================================================|
+035 Usa solo equipaggiamento minerario durante l'estrazione|
+036 <par1>: non ho laser né droni minerari, quindi non estrarrò.|

@@ -56,3 +56,8 @@
 032 <par1>: <par2> sumiu, ordem de escolta encerrada.|
 033 <par1>: <par2> agora é hostil, ordem de escolta encerrada.|
 034 <par1>: meu porão está cheio, vou continuar escoltando <par2> sem coletar.|
+#=======================================================|
+[3] Mining gear                                         |
+#=======================================================|
+035 Usar só equipamento de mineração ao minerar|
+036 <par1>: não tenho lasers nem drones de mineração, então não vou minerar.|

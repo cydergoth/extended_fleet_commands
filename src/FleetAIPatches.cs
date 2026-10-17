@@ -1,10 +1,14 @@
 using System;
+using System.Collections.Generic;
 using HarmonyLib;
 using UnityEngine;
 
 namespace ExtendedFleetCommands
 {
-    /// <summary>Hooks the fleet ship AI so ships with an extended order follow <see cref="FleetOrders"/>.</summary>
+    /// <summary>
+    /// Hooks the fleet ship AI so ships with an extended order follow <see cref="FleetOrders"/>, and
+    /// miners follow the <see cref="MiningGear"/> setting.
+    /// </summary>
     [HarmonyPatch]
     internal static class FleetAIPatches
     {
@@ -61,7 +65,48 @@ namespace ExtendedFleetCommands
         [HarmonyPatch(typeof(AIMercenary), nameof(AIMercenary.SearchForAsteroids))]
         private static bool SearchForAsteroids_Prefix(AIMercenary __instance)
         {
-            return !FleetOrders.BlocksTargeting(__instance);
+            return !FleetOrders.BlocksTargeting(__instance) && MiningGear.AllowsMining(__instance);
+        }
+
+        /// <summary>"Only use mining gear when mining": the ship's own (non-turret) weapons.</summary>
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(AIMercenary), "CanFireWeaponType")]
+        private static void CanFireWeaponType_Postfix(AIMercenary __instance, TWeapon weap, ref bool __result)
+        {
+            if (MiningGear.RestrictedNow(__instance))
+            {
+                // Mining weapons fire whichever of beams or projectiles the AI is cycling to.
+                __result = MiningGear.IsMiningWeapon(weap);
+            }
+        }
+
+        /// <summary>"Only use mining gear when mining": turret-mounted weapons.</summary>
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(WeaponTurret), "CanFireWeaponType")]
+        private static void TurretCanFireWeaponType_Postfix(WeaponTurret __instance, TWeapon weap, ref bool __result)
+        {
+            if (__result && !MiningGear.TurretMayFire(__instance, weap))
+            {
+                __result = false;
+            }
+        }
+
+        /// <summary>"Only use mining gear when mining": drones. AIControl.Update launches them.</summary>
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(AIControl), "Update")]
+        private static void AIUpdate_Prefix(AIControl __instance, out List<ActiveEquipment> __state)
+        {
+            __state = __instance is AIMercenary ship ? MiningGear.LimitDrones(ship) : null;
+        }
+
+        [HarmonyFinalizer]
+        [HarmonyPatch(typeof(AIControl), "Update")]
+        private static void AIUpdate_Finalizer(AIControl __instance, List<ActiveEquipment> __state)
+        {
+            if (__state != null)
+            {
+                MiningGear.RestoreDrones((AIMercenary)__instance, __state);
+            }
         }
 
         /// <summary>

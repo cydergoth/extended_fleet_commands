@@ -60,6 +60,10 @@ namespace ExtendedFleetCommands
         public const int MsgEscortTargetHostile = 33;
         public const int MsgEscortHoldFull = 34;
 
+        // "Only use mining gear when mining" behaviour
+        public const int MiningGearOnly = 35;
+        public const int MsgNoMiningGear = 36;
+
         private const string EnglishResource = "ExtendedFleetCommands.Language.english_main.txt";
 
         private static Dictionary<int, string> english;

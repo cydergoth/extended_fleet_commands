@@ -56,3 +56,8 @@
 032 <par1>: <par2> zniknął, rozkaz eskorty zakończony.|
 033 <par1>: <par2> jest teraz wrogi, rozkaz eskorty zakończony.|
 034 <par1>: ładownia pełna, dalej eskortuję <par2> bez zbierania.|
+#=======================================================|
+[3] Mining gear                                         |
+#=======================================================|
+035 Podczas wydobycia używaj tylko sprzętu górniczego|
+036 <par1>: nie mam laserów ani dronów górniczych, więc nie będę wydobywać.|

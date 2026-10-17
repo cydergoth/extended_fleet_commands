@@ -14,6 +14,12 @@ and emergency-warp settings). The orders act on **your current target**:
   shadowing a mining ship and collecting its ore.
 - **Cancel**: the ship drops its order and goes back to formation.
 
+It also adds one behaviour setting:
+
+- **Only use mining gear when mining**: a ship with the **Mining** role uses only its mining
+  lasers and mining drones on asteroids, and keeps its other weapons and drones quiet. A ship with
+  no mining gear doesn't mine at all, as if it found no asteroid.
+
 ## Using it
 
 1. Target the wreck, container, loot, ship or station you want the order to apply to.
@@ -56,6 +62,22 @@ tractor beam, loads something, runs out of cargo space, or the order ends.
   is destroyed, leaves, or turns hostile to you.
 - Any order ends when you give the fleet (or that ship) a direct attack order, when the ship docks
   at a station or your carrier, or when it makes an emergency warp.
+
+### Only use mining gear when mining
+
+The toggle sits just above the Orders section. It only changes ships with the **Mining** role, and
+only while they are working an asteroid:
+
+- Weapons that do bonus damage to asteroids (mining lasers), fixed or turret-mounted, fire as
+  usual. Every other weapon holds fire.
+- Mining drones launch as usual. Combat drones stay in the hangar, and any already out are
+  recalled.
+- If the ship has no mining weapons or mining drones, it doesn't look for asteroids and lets go of
+  the one it was mining. It stays in formation like a miner with no asteroid in range. Switching the
+  toggle on for a ship like that puts a note in the message log.
+- When the ship fights (for example, it is attacked), it uses all its weapons and drones as usual.
+
+Unlike orders, this setting is saved with the game.
 
 ### Limitations
 
@@ -118,7 +140,9 @@ Download the new release and extract it over the old one, replacing the files in
 - To remove BepInEx too, delete `BepInEx/`, `winhttp.dll`, `doorstop_config.ini` and
   `changelog.txt` from the game folder, and clear the launch option.
 
-The mod saves nothing in your save files, so you can remove it at any time.
+You can remove the mod at any time. The only thing it saves is the **Only use mining gear when
+mining** setting, which is kept in a spare field of the ship's behaviour settings that the game
+itself never reads, so removing the mod leaves your saves working as before.
 
 ## Configuration
 
@@ -160,8 +184,9 @@ the text after each number. Please send corrections as a pull request or an issu
 - Works alongside [Production Summary](https://github.com/cydergoth/production_summary).
 - Achievements are unaffected. The game has no mod detection, and this mod doesn't touch perks,
   stats or Steam.
-- The mod changes how fleet ships behave only while they have one of its orders. Without an order,
-  the game's own AI runs unchanged.
+- The mod changes how fleet ships behave only while they have one of its orders, or while a Mining
+  ship with **Only use mining gear when mining** on is mining. Otherwise the game's own AI runs
+  unchanged.
 - If a game update renames something the mod relies on, the mod disables itself at startup and
   writes the reason to `BepInEx/LogOutput.log`. The rest of the game keeps working.
 
@@ -185,9 +210,10 @@ Steam location. The project file also checks the default Windows Steam path.
 
 **Orders section.** A postfix on `FleetBehaviorControl.ShowData`, which runs whenever the behaviour
 panel opens or switches ship, adds the section the first time and refreshes it. The panel's controls
-are anchored to its top, so the mod makes the panel 100 px taller and puts the section in the new
-space above the Close button. Its labels and buttons are copies of the panel's own, and it refreshes
-four times a second while open so it follows your target.
+are anchored to its top, so the mod makes the panel 126 px taller and puts the mining toggle and
+the Orders section in the new space above the Close button. Its labels, buttons and toggle are
+copies of the panel's own, and it refreshes four times a second while open so it follows your
+target.
 
 **Orders.** An order is a small `FleetOrder` component on the fleet ship's GameObject, so it goes
 away with the ship. These patches read it:
@@ -203,6 +229,16 @@ away with the ship. These patches read it:
   and Escort so the ship doesn't wander off to fight, repair or mine.
 - `AE_TractorBeam.ShouldBeActivated`: while towing, the AI's combat logic leaves the tractor beam
   alone.
+
+**Only use mining gear when mining.** The setting is a bit in `FleetMemberBehavior.repairTactic`,
+which the game saves with each fleet ship but never reads. While a ship with the setting mines:
+
+- `AIMercenary.CanFireWeaponType` and `WeaponTurret.CanFireWeaponType` allow only weapons with
+  `DamageType.AsteroidBonus`.
+- Around `AIControl.Update`, which launches every drone bay at the ship's target, the ship's list of
+  attack drone bays is narrowed to its mining drone bays, and combat drones that are out are
+  recalled.
+- `AIMercenary.SearchForAsteroids` is blocked if the ship has no mining weapons or drones.
 
 Towing uses the ship's own `AE_TractorBeam`, so tow range, force and energy use match the player's.
 Loading calls `CargoSystem.CollectItem`, the same method fleet ships use to collect loot, so cargo

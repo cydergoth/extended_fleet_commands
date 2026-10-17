@@ -56,3 +56,8 @@
 032 <par1>: <par2> ist verschwunden, Eskortbefehl beendet.|
 033 <par1>: <par2> ist jetzt feindlich, Eskortbefehl beendet.|
 034 <par1>: Mein Frachtraum ist voll, ich eskortiere <par2> weiter, ohne zu sammeln.|
+#=======================================================|
+[3] Mining gear                                         |
+#=======================================================|
+035 Beim Abbau nur Bergbauausrüstung verwenden|
+036 <par1>: Ich habe keine Bergbaulaser oder Bergbaudrohnen, also baue ich nichts ab.|

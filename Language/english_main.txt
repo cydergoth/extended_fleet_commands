@@ -54,3 +54,8 @@
 032 <par1>: <par2> is gone, escort order ended.|
 033 <par1>: <par2> is hostile now, escort order ended.|
 034 <par1>: my cargo hold is full, I'll keep escorting <par2> without collecting.|
+#=======================================================|
+[3] Mining gear                                         |
+#=======================================================|
+035 Only use mining gear when mining|
+036 <par1>: I have no mining lasers or mining drones, so I won't mine.|
