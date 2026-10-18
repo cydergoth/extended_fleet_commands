@@ -18,7 +18,8 @@ It also adds one behaviour setting:
 
 - **Only use mining gear when mining**: a ship with the **Mining** role uses only its mining
   lasers and mining drones on asteroids, and keeps its other weapons and drones quiet. A ship with
-  no mining gear doesn't mine at all, as if it found no asteroid.
+  no mining gear doesn't mine at all, as if it found no asteroid. On a ship of any role, a turret
+  that has a mining laser on it fires only the laser at asteroids.
 
 ## Using it
 
@@ -65,8 +66,8 @@ tractor beam, loads something, runs out of cargo space, or the order ends.
 
 ### Only use mining gear when mining
 
-The toggle sits just above the Orders section. It only changes ships with the **Mining** role, and
-only while they are working an asteroid:
+The toggle sits just above the Orders section. For ships with the **Mining** role, while they are
+working an asteroid:
 
 - Weapons that do bonus damage to asteroids (mining lasers), fixed or turret-mounted, fire as
   usual. Every other weapon holds fire.
@@ -76,6 +77,10 @@ only while they are working an asteroid:
   the one it was mining. It stays in formation like a miner with no asteroid in range. Switching the
   toggle on for a ship like that puts a note in the message log.
 - When the ship fights (for example, it is attacked), it uses all its weapons and drones as usual.
+
+A turret with a mining laser on it shoots at nearby asteroids by itself whenever it has nothing
+else to shoot at, whatever the ship's role, and normally fires every weapon on that turret at them.
+With the toggle on, only the mining laser fires at asteroids, for ships of any role.
 
 Unlike orders, this setting is saved with the game.
 
@@ -185,8 +190,8 @@ the text after each number. Please send corrections as a pull request or an issu
 - Achievements are unaffected. The game has no mod detection, and this mod doesn't touch perks,
   stats or Steam.
 - The mod changes how fleet ships behave only while they have one of its orders, or while a Mining
-  ship with **Only use mining gear when mining** on is mining. Otherwise the game's own AI runs
-  unchanged.
+  ship with **Only use mining gear when mining** on is mining, or while a turret on a ship with that
+  setting on aims at an asteroid. Otherwise the game's own AI runs unchanged.
 - If a game update renames something the mod relies on, the mod disables itself at startup and
   writes the reason to `BepInEx/LogOutput.log`. The rest of the game keeps working.
 
@@ -239,6 +244,10 @@ which the game saves with each fleet ship but never reads. While a ship with the
   attack drone bays is narrowed to its mining drone bays, and combat drones that are out are
   recalled.
 - `AIMercenary.SearchForAsteroids` is blocked if the ship has no mining weapons or drones.
+
+A `WeaponTurret` with a mining weapon looks for asteroids itself (`SearchForMiningTarget`) whatever
+the ship's role. So for any ship with the setting on, `WeaponTurret.CanFireWeaponType` also stops a
+turret from firing its non-mining weapons at an asteroid.
 
 Towing uses the ship's own `AE_TractorBeam`, so tow range, force and energy use match the player's.
 Loading calls `CargoSystem.CollectItem`, the same method fleet ships use to collect loot, so cargo

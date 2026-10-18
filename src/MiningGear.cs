@@ -121,14 +121,18 @@ namespace ExtendedFleetCommands
             ship.attackDronesAE = all;
         }
 
-        /// <summary>Weapon turrets pick their own targets, including the asteroid the ship is mining.</summary>
+        /// <summary>
+        /// Weapon turrets pick their own targets, including the asteroid the ship is mining. A turret
+        /// with a mining laser also goes after nearby asteroids by itself whatever the ship's role,
+        /// and fires everything on its mount at them, so this applies to any ship with the setting on.
+        /// </summary>
         public static bool TurretMayFire(WeaponTurret turret, TWeapon weapon)
         {
             if (IsMiningWeapon(weapon) || turret.target == null || !turret.target.CompareTag("Asteroid"))
             {
                 return true;
             }
-            return !(GameAccess.TurretOwner(turret) is AIMercenary ship && Restricted(ship));
+            return !(GameAccess.TurretOwner(turret) is AIMercenary ship && ship.aiMercChar != null && IsOn(ship.aiMercChar));
         }
 
         /// <summary>The panel's toggle was switched on: say so if the ship has nothing to mine with.</summary>
