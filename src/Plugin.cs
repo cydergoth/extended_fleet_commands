@@ -12,7 +12,7 @@ namespace ExtendedFleetCommands
     {
         public const string Guid = "starvalor.extendedfleetcommands";
         public const string Name = "Extended Fleet Commands";
-        public const string Version = "1.1.0";
+        public const string Version = "1.1.1";
 
         internal static ManualLogSource Log;
         internal static ConfigEntry<float> DefendRadius;
